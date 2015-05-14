@@ -1,8 +1,8 @@
-/* Fonction pour convertir la température d'une unité à une autre */
-/* vta  = valeur de la température à convertir */
-/* utie = unité de départ à convertir */
-/* utoe = unité dans laquelle doit être convertie la température */
-/* La fonction retourne la valeur convertie */
+// Temperature units conversion
+// vta  = value of the initial temperature to convert
+// utie = unit of the initial value
+// utoe = unit of the converted temperature
+// The function returns the converted temperature value
 function temperatureConvert(vte, utie, utoe) {
 	if(typeof(vte) === 'number') {
 		switch(utie) {
@@ -47,12 +47,12 @@ function temperatureConvert(vte, utie, utoe) {
 	return tConverted;
 }
 
-/* Fonction pour dessiner les arcs de cercles en fonction de la température */
-/* plb     = lieu où se trouve la sonde (ID unique) */
-/* vtb     = valeur numérique de la température */
-/* utob    = unité de la tepérature */
-/* vtblow  = seuil d'alerte minimal */
-/* vtbhigh = seuil d'alerte maximal */
+// Function to draw an arc of a circle depending on the temperature value
+// plb     = location of the sensor (unique ID)
+// vtb     = temperature value
+// utob    = temperature unit
+// vtblow  = minimal alert threshold
+// vtbhigh = maximal alert threshold
 function tempGraph(plb, vtb, utib, vtblow, vtbhigh) {
 	if(typeof(vtb) === 'number') {
 		var finaltb = temperatureConvert(vtb, utib, 'c');
@@ -83,28 +83,28 @@ function tempGraph(plb, vtb, utib, vtblow, vtbhigh) {
 			coulfnd = '#cc0000';
 		}
 		var counterClockwise = false;
-		/* traçage du repere de guidage du graphe visible */
+		// Tracing the "guide" for the graph (thin line)
 		guide.beginPath();
 		guide.arc(x, y, 29, startAngle, endRuler, counterClockwise);
 		guide.lineWidth = 3;
 		guide.strokeStyle = couleur;
 		guide.stroke();
-		/* traçage du graphe dans la plage visible */
+		// Tracing the arc for the temperature value (thick line)
 		context.beginPath();
 		context.arc(x, y, 35, startAngle, endAngle, counterClockwise);
 		context.lineWidth = 15;
 		context.strokeStyle = couleur;
 		context.stroke();
-		/* positionnement du zéro */
+		// Positionning the zero mark
 		zero.fillStyle = coulfnd;
 		zero.fillRect (xZero, yZero, 10, 10);
 	}
 }
 
-/* Fonction pour afficher la température de manière formatée */
-/* vta       = valeur de la température */
-/* unita     = unité de la température */
-/* alerttemp = définit si affichage en alerte [true|false] */
+// Function to display the temperature in a specific HTML way
+// vta       = temperature value
+// unita     = temperature unit
+// alerttemp = is this an alert? [true|false]
 function displayTemp(vta, unita, alerttemp) {
 	if(typeof(vta) === 'number') {
 		if(vta < 0) {
@@ -148,9 +148,9 @@ function displayTemp(vta, unita, alerttemp) {
 	}
 }
 
-/* Fonction pour afficher le taux d'humidité de manière formatée */
-/* vma        = valeur de l'humidité (en pourcentage) */
-/* alertmoist = définit si affichage en alerte [true|false] */
+// Function to display the humidity in a specific HTML way
+// vma        = humidity value (in percents)
+// alertmoist = is this an alert? [true|false]
 function displayMoist(vma, alertmoist) {
 	if(typeof(vma) === 'number') {
 		var intvma = Math.round(vma);
@@ -164,21 +164,21 @@ function displayMoist(vma, alertmoist) {
 	}
 }
 
-/* Fonction pour afficher la consommation énergétique de manière formatée */
+// Function to display the energy consumption in a specific HTML way
 function displayEnergy() {
-	/* voir fonction getEnergy() */
+	// See function getEnergy()
 }
 
-/* Fonction de redistribution des valeurs aux fonctions concernées */
-/* plc     = lieu où se trouve la sonde */
-/* vtc     = valeur numérique de la température */
-/* vtclow  = seuil minimal d'alerte de température */
-/* vtchigh = seuil maximal d'alerte de température */
-/* utic    = unité en entrée de la température de la sonde */
-/* utoc    = unité dans laquelle afficher la température à l'écran */
-/* vmc     = valeur de l'humidité (en pourcentage) */
-/* vmclow  = seuil minimal d'alerte d'humidité */
-/* vmchigh = seuil maximal d'alerte d'humidité */
+// Function to redistribute the values to the appropriate functions
+// plc     = location of the sensor
+// vtc     = temperature value
+// vtclow  = min temperature alert threshold
+// vtchigh = max temperature alert threshold
+// utic    = unit of the temperature given by the sensor
+// utoc    = unit of the temperature to display
+// vmc     = humidity value (in percents)
+// vmclow  = min humidity alert threshold
+// vmchigh = max humidity alert threshold
 function getData(plc, vtc, vtclow, vtchigh, utic, utoc, vmc, vmclow, vmchigh) {
 	var finaltc = temperatureConvert(vtc, utic.toLowerCase(), utoc.toLowerCase());
 	var finaltclow = temperatureConvert(vtclow, utic.toLowerCase(), utoc.toLowerCase());
@@ -225,12 +225,12 @@ function getData(plc, vtc, vtclow, vtchigh, utic, utoc, vmc, vmclow, vmchigh) {
 	document.write('<div class="location">' + plc + '</div></span>');
 }
 
-/* Fonction de formatage des infos météo */
-/* trend = nom de la tendance (voir common.css pour les noms disponibles) */
-/* vtd   = valeur numérique de la température */
-/* utid  = unité en entrée de la température de la sonde */
-/* utod  = unité dans laquelle afficher la température à l'écran */
-/* vmd   = valeur de l'humidité (en pourcentage) */
+// Function to display the weather data in a specific HTML way
+// trend = name of the "trend" (see common.css for available names)
+// vtd   = temperature value
+// utid  = temperature unit of the sensor
+// utod  = temperature unit of the temperature to display
+// vmd   = humidity (in percents)
 function getWeather(trend, vtd, utid, utod, vmd) {
 	var finaltd = temperatureConvert(vtd, utid, utod);
 	document.write('<span class="room"><div class="pictometeo plein ' + trend + '" alt="' + trend + '"></div>');
@@ -239,10 +239,10 @@ function getWeather(trend, vtd, utid, utod, vmd) {
 	document.write('</span>');
 }
 
-/* Fonction de formatage des infos de consommation énergétique */
-/* conso     = valeur numérique de la concommation (en Watts) */
-/* updown    = tendance par rapport au dernier relevé : 'up' ou autre */
-/* consohigh = seuil maximal d'alerte de consommation */
+// Function to prepare the energy consumption data
+// conso     = value of the consumption (in Watts)
+// updown    = tendency according to previous data: value is 'up' or other
+// consohigh = max alert threshold
 function getEnergy(conso, updown, consohigh) {
 	if(typeof(conso) === 'number') {
 		var isalert = '';
@@ -274,7 +274,7 @@ function getEnergy(conso, updown, consohigh) {
 	}
 }
 
-/* Fonction clignotteur pour faire clignotter tout et n'importe quoi */
+// Function to enable blinking
 function blink(){
     $('.blink').delay(1000).fadeTo(100,0).delay(100).fadeTo(100,1, blink);
 }

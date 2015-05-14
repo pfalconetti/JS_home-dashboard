@@ -4,47 +4,48 @@
 <head>
     <meta charset="UTF-8">
     <title>myHome dashboard</title>
-    <!-- Petit hack pour forcer les proportions correctes avec iOS -->
+    <!-- Specially for iOS -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- On sait jamais, si on veut utiliser des effets... -->
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <!-- In case we want to use effects -->
     <script src="http://code.jquery.com/jquery-latest.js"></script>
-    <!-- Quelques fonctions persos pour automatiser l'affichage à l'intérieur des boites -->
+    <!-- This is the best part, where the "magic" happens -->
     <script type="text/javascript" src="js/custom.js"></script>
     <script>
 		$(document).ready(function() {
 			blink();
 		});
 	</script>
-    <!-- Bon, je vais s�parer les feuilles de style : 1 commune, et 1 par support diff�rent -->
-    <!-- Eventuellement, s'il n'y a pas beaucoup de styles, on peut tout regrouper dans le m�me fichier et les tests seront effectu�s directement dans la CSS -->
-    <!-- Eventuellement, on peut en ajouter d'autres pour affiner... mais au bout d'un moment, �a n'a pas beaucoup d'int�r�t -->
+    <!-- Stylesheets depending on the needs -->
     <link rel="stylesheet" href="css/common.css" media="all">
-    <link rel="stylesheet" href="css/responsive/desktop.css" media="screen and (min-device-width:980px)">
-    <link rel="stylesheet" href="css/responsive/tablet.css" media="screen and (min-device-width:768px) and (max-device-width:980px)">
-    <link rel="stylesheet" href="css/responsive/smartphonelarge.css" media="screen and (min-device-width:480px) and (max-device-width:768px)">
-    <link rel="stylesheet" href="css/responsive/smartphonesmall.css" media="screen and (min-device-width:320px) and (max-device-width:480px)">
-    <link rel="stylesheet" href="css/responsive/wap.css" media="screen and (max-device-width:320px)">
     <!-- IE6-8 support of HTML5 elements -->
     <!--[if lt IE 9]>
     <script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
-    <!-- Juste pour que le raccourci du site apparaisse comme une appli native sur l'ecran d'accueil d'un iOS -->
-    <meta name="apple-mobile-web-app-capable" content="yes" />
-    <!-- Eventuellement un petit autoreload (en secondes) -->
+    <!-- Eventually reload the page to make sure every device refreshes the values -->
     <meta http-equiv="refresh" content="60" >
 </head>
 
 <body>
     <div class="wrapper">
+    	<!-- Put here every extra data you need to siplay -->
         <div class="header">
             <div class="title">myHome dashboard</div>
             <div class="date">lundi 10 décembre 2012</div>
             <div class="time">15h46</div>
             <div class="version">v 1.0.4</div>
         </div>
+        <!-- This section displays the received data: it's the "dashboard" -->
+        <!-- Every class=floor is a group, displaying data from the same floor (.internal), (.)external or (.)energy consumtion-->
         <div class="dashboard">
+	        <!-- This is a HTML template with dummy data -->
+            <!-- Use your usual values (given by your favorite sensors) and give them to the JS functions below -->
             <span class="floor internal">
+            	<!-- For each group, you can define a title	(displayed above the data group) -->
                 <div class="title">RDC</div>
+                <!-- For each group, inject data calling the appropriate JS function -->
+                <!-- Each function call displays a separate block -->
+                <!-- See js/custom.js file for the specs -->
                 <div class="group">
 					<script>getData('salon', 13.3, 17, 23, 'c', 'f', 33, 20, 60);</script>
                     <script>getData('cuisine', 'toto', 17, 23, 'c', 'c', 43, 20, 60);</script>
