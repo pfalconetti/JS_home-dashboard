@@ -1,0 +1,192 @@
+/***** generic *****/
+
+html, body, * {
+	color:#999999;
+	font-family:Verdana, Arial, Helvetica, sans-serif;
+	font-size:12px;
+	margin:0;
+	padding:0;
+}
+
+.floor { /* SPAN .internal|.external|.energy */
+	display:inline-table;
+}
+
+.title { /* DIV */
+	/*color:#999999;*/
+}
+
+.group { /* DIV */
+	margin-bottom:10px;
+}
+
+.room { /* SPAN */
+	border-radius:5px;
+	background-color:#ffffff;
+	border:3px solid #999999;
+	display:inline-block;
+	height:100px;
+	margin:5px;
+	padding:5px;
+	position:relative;
+	width:150px;
+}
+
+.alert {
+	background-color:#cc0000;
+	border:3px solid #cc0000;
+}
+
+.alert .location {
+	color:#cc0000;
+}
+
+.alert .conso *,
+.alert .moist *,
+.alert .temp *,
+.alert .tendance * {
+	color:#ffffff;
+}
+
+.alertzone {
+	height:20px;
+	position:absolute;
+	right:10px;
+	top:10px;
+}
+
+.alerticon {
+	display:none;
+}
+
+.alertzone .alerticon.temper,
+.alertzone .alerticon.moister,
+.alertzone .alerticon.consomer {
+	display:inline-block;
+	height:20px;
+	margin-left:10px;
+	width:20px;
+}
+
+.alertzone .alerticon.temper.toocold	 {background:url(../pics/weather.png) -30px -430px no-repeat}
+.alertzone .alerticon.temper.toohot 	 {background:url(../pics/weather.png) -670px -350px no-repeat;}
+.alertzone .alerticon.moister.toodry	 {background:url(../pics/weather.png) -110px -430px no-repeat;}
+.alertzone .alerticon.moister.toowet	 {background:url(../pics/weather.png) -590px -350px no-repeat;}
+.alertzone .alerticon.consomer.tooenergy {background:url(../pics/weather.png) -190px -430px no-repeat;}
+
+.location {
+	font-size:16px;
+	font-weight:bold;
+	position:absolute;
+	bottom:-19px;
+}
+
+/***** data *****/
+
+.energy .conso      {position:absolute;left:44px;top:32px;}
+.external .temp		{position:absolute;left:110px;top:42px;}
+.external .moist	{position:absolute;left:110px;bottom:8px;}
+.internal .temp		{position:absolute;left:44px;top:32px;}
+.internal .moist	{position:absolute;right:10px;bottom:8px;}
+
+.energy .conso .value   {font-size:35px;}
+.external .temp .value	{font-size:18px;}
+.external .moist .value	{font-size:18px;}
+.internal .temp .value	{font-size:35px;}
+.internal .moist .value	{font-size:20px;}
+
+.internal .moist .picto {
+	background:url(../pics/weather.png) -510px -350px no-repeat;
+	display:inline-block;
+	height:20px;
+	vertical-align:text-bottom;
+	width:20px;
+}
+
+.internal .alert .moist .picto {background:url(../pics/weather.png) -590px -350px no-repeat;}
+
+.external .temp .decimale {display:none;}
+
+.decimale {
+	font-size:16px;
+}
+
+.unit {
+	font-size:16px;
+    margin-left:5px;
+}
+
+.tempgraph {
+	left:5px;
+	position:absolute;
+	top:5px;
+}
+
+.energy .tendance.picto {
+    display:inline-block;
+    height:20px;
+    left:20px;
+    position:absolute;
+	top:45px;
+	width:20px;
+}
+
+.energy .tendance.picto.up {background:url(../pics/weather.png) -270px -430px no-repeat;}
+
+/***** weather *****/
+
+.pictometeo {
+	display:block;
+	height:80px;
+	left:15px;
+	position:absolute;
+	top:15px;
+	width:80px;
+}
+
+.pictometeo.ligne.soleilhorizon 		{background:url(../pics/weather.png) 0px 0px no-repeat;}
+.pictometeo.ligne.soleil				{background:url(../pics/weather.png) -80px 0px no-repeat;}
+.pictometeo.ligne.lune					{background:url(../pics/weather.png) -160px 0px no-repeat;}
+.pictometeo.ligne.soleillune			{background:url(../pics/weather.png) -240px 0px no-repeat;}
+.pictometeo.ligne.brume					{background:url(../pics/weather.png) -320px 0px no-repeat;}
+.pictometeo.ligne.vent					{background:url(../pics/weather.png) -400px 0px no-repeat;}
+.pictometeo.ligne.flocon				{background:url(../pics/weather.png) -480px 0px no-repeat;}
+.pictometeo.ligne.soleilnuage			{background:url(../pics/weather.png) -560px 0px no-repeat;}
+.pictometeo.ligne.lunenuage				{background:url(../pics/weather.png) -640px 0px no-repeat;}
+
+.pictometeo.ligne.soleilbrume			{background:url(../pics/weather.png) 0px -80px no-repeat;}
+.pictometeo.ligne.lunebrume				{background:url(../pics/weather.png) -80px -80px no-repeat;}
+.pictometeo.ligne.nuagebrume			{background:url(../pics/weather.png) -160px -80px no-repeat;}
+.pictometeo.ligne.brouillard			{background:url(../pics/weather.png) -240px -80px no-repeat;}
+.pictometeo.ligne.nuage					{background:url(../pics/weather.png) -320px -80px no-repeat;}
+.pictometeo.ligne.nuageeclair			{background:url(../pics/weather.png) -400px -80px no-repeat;}
+.pictometeo.ligne.nuageorage			{background:url(../pics/weather.png) -480px -80px no-repeat;}
+.pictometeo.ligne.nuagepluie			{background:url(../pics/weather.png) -560px -80px no-repeat;}
+.pictometeo.ligne.nuageaverse			{background:url(../pics/weather.png) -640px -80px no-repeat;}
+
+.pictometeo.ligne.ventnuage				{background:url(../pics/weather.png) 0px -160px no-repeat;}
+.pictometeo.ligne.ventnuagepluie		{background:url(../pics/weather.png) -80px -160px no-repeat;}
+.pictometeo.ligne.nuagefroid			{background:url(../pics/weather.png) -160px -160px no-repeat;}
+.pictometeo.ligne.nuageflocon			{background:url(../pics/weather.png) -240px -160px no-repeat;}
+.pictometeo.ligne.nuageneige			{background:url(../pics/weather.png) -320px -160px no-repeat;}
+.pictometeo.ligne.nuagegrele			{background:url(../pics/weather.png) -400px -160px no-repeat;}
+.pictometeo.ligne.nuagecouvert			{background:url(../pics/weather.png) -480px -160px no-repeat;}
+.pictometeo.ligne.nuageeclaircouvert	{background:url(../pics/weather.png) -560px -160px no-repeat;}
+.pictometeo.ligne.nuageoragecouvert		{background:url(../pics/weather.png) -640px -160px no-repeat;}
+
+.pictometeo.plein.soleil				{background:url(../pics/weather.png) 0px -240px no-repeat;}
+.pictometeo.plein.lune					{background:url(../pics/weather.png) -80px -240px no-repeat;}
+.pictometeo.plein.soleilnuage			{background:url(../pics/weather.png) -160px -240px no-repeat;}
+.pictometeo.plein.lunenuage				{background:url(../pics/weather.png) -240px -240px no-repeat;}
+.pictometeo.plein.nuage					{background:url(../pics/weather.png) -320px -240px no-repeat;}
+.pictometeo.plein.nuageorage			{background:url(../pics/weather.png) -400px -240px no-repeat;}
+.pictometeo.plein.nuagepluie			{background:url(../pics/weather.png) -480px -240px no-repeat;}
+.pictometeo.plein.nuageaverse			{background:url(../pics/weather.png) -560px -240px no-repeat;}
+.pictometeo.plein.ventnuage				{background:url(../pics/weather.png) -640px -240px no-repeat;}
+
+.pictometeo.plein.ventnuagepluie		{background:url(../pics/weather.png) 0px -320px no-repeat;}
+.pictometeo.plein.nuageflocon			{background:url(../pics/weather.png) -80px -320px no-repeat;}
+.pictometeo.plein.nuageneige			{background:url(../pics/weather.png) -160px -320px no-repeat;}
+.pictometeo.plein.nuagegrele			{background:url(../pics/weather.png) -240px -320px no-repeat;}
+.pictometeo.plein.nuagecouvert			{background:url(../pics/weather.png) -320px -320px no-repeat;}
+.pictometeo.plein.nuageoragecouvert		{background:url(../pics/weather.png) -400px -320px no-repeat;}
